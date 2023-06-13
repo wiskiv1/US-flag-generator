@@ -54,8 +54,8 @@ function generate_flag(x, y, w, h) {
 
     // blauwe zone
     fill(kleur.blauw);
-    hoogte = floor(random(0, h));
-    let breedte = floor(random(0, w));
+    hoogte = floor(random(0.01*h, h));
+    let breedte = floor(random(0.01*w, w));
     let posX = floor(random(x, x + w - breedte))
     let posY = floor(random(y, y + h - hoogte))
     rect(posX, posY, breedte, hoogte);
@@ -63,9 +63,9 @@ function generate_flag(x, y, w, h) {
     // sterren
     fill(kleur.wit);
     for (let i = 0; i < sterren; i++) {
-        let size = floor(random(0.05*hoogte, 0.15*hoogte));
-        let sterX = floor(random(posX, posX + breedte));
-        let sterY = floor(random(posY, posY + hoogte));
+        let size = floor(random(0.05*min(hoogte, breedte), 0.15*min(hoogte, breedte)));
+        let sterX = floor(random(posX + size, posX + breedte - size));
+        let sterY = floor(random(posY + size, posY + hoogte -  size));
 
         ster(sterX, sterY, size);
     }
